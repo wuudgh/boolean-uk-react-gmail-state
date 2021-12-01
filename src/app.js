@@ -3,22 +3,41 @@ import Header from './components/header'
 import initialEmails from './data/emails'
 
 import './styles/app.css'
+import React, {useState} from 'react';
 
 function App() {
   // Use initialEmails for state
+  const [emails, setEmails] = useState(initialEmails);
+  const [hideread, setHideRead] = useState(false)
+  const emailsElements = emails.map(function(element){
+    console.log(element)
+    return <li>
+      <input type="checkbox"></input>       
+      <span>{element.sender}</span>
+      <span>{element.title}</span>
+      </li>
+  })
+
   console.log(initialEmails)
 
   return (
     <div className="app">
       <Header />
+     
       <nav className="left-menu">
+
         <ul className="inbox-list">
+      
           <li
             className="item active"
-            // onClick={() => {}}
+              onClick={() => {}}
+
+           
+          
+
           >
             <span className="label">Inbox</span>
-            <span className="count">?</span>
+            <span className="count"></span>
           </li>
           <li
             className="item"
@@ -39,7 +58,8 @@ function App() {
           </li>
         </ul>
       </nav>
-      <main className="emails">{/* Render a list of emails here */}</main>
+      <main className="emails">{emailsElements}</main>
+      <label type = "checkbox"></label>
     </div>
   )
 }
